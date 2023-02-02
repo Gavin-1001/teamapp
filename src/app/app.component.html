@@ -1,21 +1,26 @@
 <div class="container">
-  <div>
-    <h1>Team Generator</h1>
-    <ul class="list">
-      <li>Laith Hard</li>
-      <li>Laith Hard1</li>
-      <li>Laith Hard2</li>
-    </ul>
-    <div class="add-members-container">
-      <input type="text" placeholder="name" />
-      <button>Add</button>
-    </div>
+    <div class="ui card">
+        <h1>Team Generator</h1>
+        <ul class="list">
+            <li *ngFor="let member of arrayOfMembers">{{member}}</li>
+        </ul>
+        <div class="add-members-container">
+            <input
+                #addMemberInput
+                type="text"
+                placeholder="name"
+                (input)="onInput(addMemberInput.value)"
+                [value]="newMemberName"
+            />
+            <!-- The [value]="newMemberName" removes the text from the input when you submit the name -->
+            <button (click)="addMember()">Add</button>
+        </div>
 
-    <div class="input-container">
-      <input type="text" placeholder="# of teams" />
-      <button>Generate</button>
-    </div>
+        <div class="input-container">
+            <input type="text" placeholder="# of teams"/>
+            <button>Generate</button>
+        </div>
 
-  </div>
+    </div>
 
 </div>
