@@ -14,6 +14,7 @@ export class AppComponent {
     errorMessage = "";
 
     numberOfTeams : number | string = ""; //this can be a number of "4" or 4 and convert "4" to a number
+    teams:string[][] = [];
 
     addMember() {
 
@@ -38,5 +39,30 @@ export class AppComponent {
 
     generateTeams(){
 
+        if(!this.numberOfTeams || this.numberOfTeams <= 0){
+            return
+            //if the input is not a number or less than 0 return
+        }
+
+        const allMembers = [...this.arrayOfMembers];
+        //destructing arrayOfMembers to basically copy the array without changing the original arrayOfMembers;
+
+
+        while(allMembers.length){
+            for(let i = 0; i < this.numberOfTeams; i++){
+                const rand = Math.floor(Math.random() * allMembers.length);
+                const member = allMembers.splice(rand, 1)[0];
+
+                if(!member)break; //removes the undefined if one array has just one name inside the array
+
+                if(this.teams[i]){//if this array of i exists
+                    this.teams[i].push(member); //push the member into the array else the member is the first element of the array
+                }else{
+                    this.teams[i] = [member]
+                }
+            }
+        }
+
+        console.log(this.teams);
     }
 }
