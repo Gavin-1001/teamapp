@@ -40,10 +40,16 @@ export class AppComponent {
     generateTeams(){
 
         if(!this.numberOfTeams || this.numberOfTeams <= 0){
+            this.errorMessage = "Invalid number of teams";
             return
             //if the input is not a number or less than 0 return
         }
 
+        if(this.arrayOfMembers.length < this.numberOfTeams){
+            this.errorMessage = "Not enough members!";
+        }
+
+        this.errorMessage = "";
         const allMembers = [...this.arrayOfMembers];
         //destructing arrayOfMembers to basically copy the array without changing the original arrayOfMembers;
 
@@ -63,6 +69,8 @@ export class AppComponent {
             }
         }
 
-        console.log(this.teams);
+        this.arrayOfMembers = []; //both the input and the output boxes return to an empty state
+        this.numberOfTeams = "";
+
     }
 }
