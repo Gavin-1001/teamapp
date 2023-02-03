@@ -12,7 +12,10 @@
                 (input)="onInput(addMemberInput.value)"
                 [value]="newMemberName"
             />
-            <!-- The [value]="newMemberName" removes the text from the input when you submit the name -->
+            <!-- The [value] is an attribute directive
+             The [value]="newMemberName" removes the text from the input when you submit the name
+                 we want angular to refer the [value] of newMemberName to the newMemberName in the ts file, which is initialized to an empty string
+            -->
             <button (click)="addMember()">Add</button>
         </div>
 
@@ -20,7 +23,7 @@
             <input type="text" placeholder="# of teams"/>
             <button>Generate</button>
         </div>
-
+        <p class="error-msg">{{errorMessage}}</p>
     </div>
 
 </div>
